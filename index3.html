@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Form</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Simple Form</h1>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.name.label }}
+                {{ form.name(class="form-control") }}
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        {% if name %}
+        <div class="alert alert-success mt-3" role="alert">
+            Hello, {{ name }}!
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

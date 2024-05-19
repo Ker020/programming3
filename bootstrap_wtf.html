@@ -1,0 +1,28 @@
+{% macro render_field(field) %}
+    <div class="form-group">
+        {{ field.label(class="form-control-label") }}
+        {% if field.type in ['TextAreaField', 'StringField'] %}
+            {{ field(class="form-control") }}
+        {% elif field.type == 'SubmitField' %}
+            {{ field(class="btn btn-primary") }}
+        {% else %}
+            {{ field() }}
+        {% endif %}
+        {% if field.errors %}
+            <ul class="errors">
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endmacro %}
+
+{% macro render_form(form) %}
+    <form method="{{ form.meta.method }}" action="{{ form.meta.action }}" role="form">
+        {{ form.hidden_tag() }}
+        {% for field in form %}
+            {{ render_field(field) }}
+        {% endfor %}
+    </form>
+{% endmacro %}
